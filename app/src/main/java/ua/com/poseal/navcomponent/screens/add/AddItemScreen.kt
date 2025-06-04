@@ -25,6 +25,7 @@ import ua.com.poseal.navcomponent.screens.AddItemRoute
 import ua.com.poseal.navcomponent.screens.EventConsumer
 import ua.com.poseal.navcomponent.screens.LocalNavController
 import ua.com.poseal.navcomponent.screens.add.AddItemViewModel.ScreenState
+import ua.com.poseal.navcomponent.screens.routeClass
 
 @Composable
 fun AddItemScreen() {
@@ -36,7 +37,7 @@ fun AddItemScreen() {
     )
     val navController = LocalNavController.current
     EventConsumer(viewModel.exitChannel) {
-        if (navController.currentBackStackEntry?.destination?.route == AddItemRoute) {
+        if (navController.currentBackStackEntry.routeClass() == AddItemRoute::class) {
             navController.popBackStack()
         }
     }

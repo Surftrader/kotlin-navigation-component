@@ -22,23 +22,22 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import dagger.hilt.android.AndroidEntryPoint
-import ua.com.poseal.navcomponent.model.ItemsRepository
 import ua.com.poseal.navcomponent.screens.AddItemRoute
 import ua.com.poseal.navcomponent.screens.AppToolbar
+import ua.com.poseal.navcomponent.screens.EditItemRoute
 import ua.com.poseal.navcomponent.screens.ItemsRoute
 import ua.com.poseal.navcomponent.screens.LocalNavController
 import ua.com.poseal.navcomponent.screens.NavigateUpAction
 import ua.com.poseal.navcomponent.screens.add.AddItemScreen
+import ua.com.poseal.navcomponent.screens.edit.EditItemScreen
 import ua.com.poseal.navcomponent.screens.items.ItemScreen
+import ua.com.poseal.navcomponent.screens.routeClass
 import ua.com.poseal.navcomponent.ui.theme.NavigationComponentTheme
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    @Inject
-    lateinit var itemsRepository: ItemsRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,9 +59,10 @@ class MainActivity : ComponentActivity() {
 fun NavApp() {
     val navController = rememberNavController()
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
-    val titleRes = when (currentBackStackEntry?.destination?.route) {
-        ItemsRoute -> R.string.items_screen
-        AddItemRoute -> R.string.add_item_screen
+    val titleRes = when (currentBackStackEntry.routeClass()) {
+        ItemsRoute::class -> R.string.items_screen
+        AddItemRoute::class -> R.string.add_item_screen
+        EditItemRoute::class -> R.string.edit_item_screen
         else -> R.string.app_name
     }
     Scaffold(
@@ -79,7 +79,7 @@ fun NavApp() {
             )
         },
         floatingActionButton = {
-            if (currentBackStackEntry?.destination?.route == ItemsRoute) {
+            if (currentBackStackEntry.routeClass() == ItemsRoute::class) {
                 FloatingActionButton(
                     onClick = { navController.navigate(AddItemRoute) },
                 ) {
@@ -96,8 +96,12 @@ fun NavApp() {
                 startDestination = ItemsRoute,
                 modifier = Modifier.fillMaxSize().padding(paddingValues),
             ) {
-                composable(ItemsRoute) { ItemScreen() }
-                composable(AddItemRoute) { AddItemScreen() }
+                composable<ItemsRoute> { ItemScreen() }
+                composable<AddItemRoute> { AddItemScreen() }
+                composable<EditItemRoute> { entry ->
+                    val route: EditItemRoute = entry.toRoute()
+                    EditItemScreen(index = route.index)
+                }
             }
         }
     }
