@@ -1,4 +1,4 @@
-package ua.com.poseal.navcomponent.screens
+package ua.com.poseal.navcomponent.ui.screens
 
 import androidx.navigation.NavBackStackEntry
 import kotlinx.serialization.Serializable

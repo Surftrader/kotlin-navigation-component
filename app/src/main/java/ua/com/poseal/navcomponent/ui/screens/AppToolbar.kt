@@ -1,4 +1,4 @@
-package ua.com.poseal.navcomponent.screens
+package ua.com.poseal.navcomponent.ui.screens
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons

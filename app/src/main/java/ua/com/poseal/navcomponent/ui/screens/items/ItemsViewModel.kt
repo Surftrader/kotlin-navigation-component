@@ -1,4 +1,4 @@
-package ua.com.poseal.navcomponent.screens.items
+package ua.com.poseal.navcomponent.ui.screens.items
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import ua.com.poseal.navcomponent.model.ItemsRepository
+import ua.com.poseal.navcomponent.model.LoadResult
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,17 +16,14 @@ class ItemsViewModel @Inject constructor(
     itemsRepository: ItemsRepository,
 ) : ViewModel() {
 
-    val stateFlow: StateFlow<ScreenState> = itemsRepository.getItems()
-        .map(ScreenState::Success)
+    val stateFlow: StateFlow<LoadResult<ScreenState>> = itemsRepository.getItems()
+        .map { LoadResult.Success(ScreenState(it)) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Lazily,
-            initialValue = ScreenState.Loading,
+            initialValue = LoadResult.Loading,
         )
 
-    sealed class ScreenState {
-        data object Loading : ScreenState()
-        data class Success(val items: List<String>) : ScreenState()
-    }
+    data class ScreenState(val items: List<String>)
 
 }

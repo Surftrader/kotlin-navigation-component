@@ -1,4 +1,4 @@
-package ua.com.poseal.navcomponent.screens.add
+package ua.com.poseal.navcomponent.ui.screens.add
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -24,16 +24,16 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import dagger.hilt.android.AndroidEntryPoint
-import ua.com.poseal.navcomponent.screens.AddItemRoute
-import ua.com.poseal.navcomponent.screens.AppToolbar
-import ua.com.poseal.navcomponent.screens.EditItemRoute
-import ua.com.poseal.navcomponent.screens.ItemsRoute
-import ua.com.poseal.navcomponent.screens.LocalNavController
-import ua.com.poseal.navcomponent.screens.NavigateUpAction
-import ua.com.poseal.navcomponent.screens.add.AddItemScreen
-import ua.com.poseal.navcomponent.screens.edit.EditItemScreen
-import ua.com.poseal.navcomponent.screens.items.ItemScreen
-import ua.com.poseal.navcomponent.screens.routeClass
+import ua.com.poseal.navcomponent.ui.screens.AddItemRoute
+import ua.com.poseal.navcomponent.ui.screens.AppToolbar
+import ua.com.poseal.navcomponent.ui.screens.EditItemRoute
+import ua.com.poseal.navcomponent.ui.screens.ItemsRoute
+import ua.com.poseal.navcomponent.ui.screens.LocalNavController
+import ua.com.poseal.navcomponent.ui.screens.NavigateUpAction
+import ua.com.poseal.navcomponent.ui.screens.add.AddItemScreen
+import ua.com.poseal.navcomponent.ui.screens.edit.EditItemScreen
+import ua.com.poseal.navcomponent.ui.screens.items.ItemScreen
+import ua.com.poseal.navcomponent.ui.screens.routeClass
 import ua.com.poseal.navcomponent.ui.theme.NavigationComponentTheme
 
 @AndroidEntryPoint
