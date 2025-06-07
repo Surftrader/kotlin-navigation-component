@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.hilt.compose)
 
     implementation(libs.kotlinx.serialization.core)
+    implementation(libs.kotlinx.collections.immutable)
 
     implementation(libs.nav.compose)
     implementation(libs.androidx.core.ktx)

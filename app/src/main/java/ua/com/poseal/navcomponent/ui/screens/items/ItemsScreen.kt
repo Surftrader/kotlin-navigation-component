@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ua.com.poseal.navcomponent.model.LoadResult
 import ua.com.poseal.navcomponent.ui.components.LoadResultContent
-import ua.com.poseal.navcomponent.ui.screens.EditItemRoute
+import ua.com.poseal.navcomponent.ui.screens.ItemsGraph.EditItemRoute
 import ua.com.poseal.navcomponent.ui.screens.LocalNavController
 import ua.com.poseal.navcomponent.ui.screens.items.ItemsViewModel.ScreenState
 
