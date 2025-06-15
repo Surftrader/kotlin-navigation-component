@@ -19,6 +19,10 @@ class AddItemViewModel @Inject constructor(
         return input.copy(isProgressVisible = true)
     }
 
+    override fun hideProgress(input: ScreenState): ScreenState {
+        return input.copy(isProgressVisible = false)
+    }
+
     override suspend fun execute(action: String) {
         itemsRepository.add(action)
     }
