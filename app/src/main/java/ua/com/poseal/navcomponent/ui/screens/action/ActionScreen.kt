@@ -46,5 +46,6 @@ fun <State, Action> ActionScreen(
             content(actionContentState)
         },
         modifier = modifier,
+        onTryAgainAction = viewModel::load,
     )
 }

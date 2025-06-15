@@ -22,9 +22,17 @@ class ActionViewModel<State, Action>(
     val exitChannel: ReceiveChannel<Unit> = _exitChannel
 
     init {
+        load()
+    }
+
+    fun load() {
         viewModelScope.launch {
-            val loadedState = delegate.loadState()
-            _stateFlow.value = LoadResult.Success(loadedState)
+            _stateFlow.value = LoadResult.Loading
+            _stateFlow.value = try {
+                LoadResult.Success(delegate.loadState())
+            } catch (e: Exception) {
+                LoadResult.Error(e)
+            }
         }
     }
 
